@@ -1,0 +1,3 @@
+adv_snake.jpg: 611  6.2, 4.6
+adv_cat_dog.jpg: 741 10.25, 1.45
+adv_spider.jpg: 824 11.87, -2.59 

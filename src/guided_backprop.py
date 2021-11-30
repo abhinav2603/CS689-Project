@@ -73,7 +73,7 @@ class GuidedBackprop():
 
 
 if __name__ == '__main__':
-	target_example = 0  # Snake
+	target_example = 2  # Snake
 	(original_image, prep_img, target_class, file_name_to_export, pretrained_model) =\
 		get_example_params(target_example)
 

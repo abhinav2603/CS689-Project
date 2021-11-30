@@ -57,15 +57,15 @@ class AttackFGS:
 		return ad_inputs
 
 if __name__ == '__main__':
-	target_example = 0  # Snake
+	target_example = 2  # Snake
 	(original_image, prep_img, target_class, file_name_to_export, pretrained_model) =\
 		get_example_params(target_example)
 	fgs = AttackFGS(targeted=False, optimize_epsilon=False, max_epsilon=0.6)
-	orig_output = pretrained_model(prep_image)
+	orig_output = pretrained_model(prep_img)
 	_, orig_pred = torch.max(orig_output.data,1)
 	print("Original Class Prediction: {}".format(orig_pred.item()))
 
-	perturbed_image = fgs.generate_ad_ex(pretrained_model, prep_image, orig_pred)
+	perturbed_image = fgs.generate_ad_ex(pretrained_model, prep_img, orig_pred)
 
 	perturbed_output = pretrained_model(perturbed_image)
 	_, adv_pred = torch.max(perturbed_output.data, 1)
@@ -75,4 +75,4 @@ if __name__ == '__main__':
 	recreated_perturbed = Image.fromarray(recreated_perturbed.astype("uint8"))
 
 	exmp = ['snake', 'cat_dog', 'spider']
-	save_image(recreated_perturbed,'../results'+exmp[target_example]+'.jpg')
+	save_image(recreated_perturbed,'../input_images/adv_'+exmp[target_example]+'.jpg')

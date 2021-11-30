@@ -35,8 +35,9 @@ class GradCam():
 		if class_label is None:
 			class_label = np.argmax(model_output.data.numpy())
 
-		one_hot_output = torch.zeros((1,model_output.size[-1]))
+		one_hot_output = torch.zeros((1,model_output.size()[-1]))
 		one_hot_output[0][class_label] = 1
+		print(model_output[0][class_label])
 
 		self.model.features.zero_grad()
 		self.model.classifier.zero_grad()
@@ -59,7 +60,7 @@ class GradCam():
 		return cam
 
 if __name__ == '__main__':
-	target_example = 0  # Snake
+	target_example = 7  # Snake
 	(original_image, prep_img, target_class, file_name_to_export, pretrained_model) =\
 		get_example_params(target_example)
 	# Grad cam
